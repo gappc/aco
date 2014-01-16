@@ -44,6 +44,8 @@ public class AntColonyArray implements AntColony {
 		}
 		System.out.println("\n-------------AntColonyArray------------------------");
 		printTrail(bestTrail, distances);
+		System.out.println("ITERATIONS = " + iterations);
+		System.out.println("ANTS = " + antCount);
 		System.out.println("ALPHA = " + alpha);
 		System.out.println("BETA = " + beta);
 		System.out.println("RHO = " + rho);
@@ -109,7 +111,7 @@ public class AntColonyArray implements AntColony {
 		double sum = 0.0;
 
 		for (int i = 0; i < numCities; i++) {
-			if (i != city && !visited[i]) {
+			if (!visited[i]) {
 				taueta[i] = Math.pow(pheromones[city][i], alpha)
 						* Math.pow((1.0 / distances[city][i]), beta);
 				if (taueta[i] < 0.0001) {

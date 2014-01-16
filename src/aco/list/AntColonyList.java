@@ -49,6 +49,8 @@ public class AntColonyList implements AntColony {
 		System.out
 				.println("\n-------------AntColonyList------------------------");
 		printTrail(bestTrail, distances);
+		System.out.println("ITERATIONS = " + iterations);
+		System.out.println("ANTS = " + antCount);
 		System.out.println("ALPHA = " + alpha);
 		System.out.println("BETA = " + beta);
 		System.out.println("RHO = " + rho);
@@ -71,8 +73,9 @@ public class AntColonyList implements AntColony {
 			List<List<Double>> distances, double alpha, double beta) {
 		int nodeCount = pheromones.size();
 		int start = new Random().nextInt(nodeCount);
-		Ant ant = new Ant(start);
 		boolean[] visited = new boolean[nodeCount];
+		visited[start] = true;
+		Ant ant = new Ant(start);
 		for (int i = 0; i < nodeCount - 1; i++) {
 			int nextNode = getNextNode(ant, visited, pheromones, distances,
 					alpha, beta);
@@ -117,7 +120,7 @@ public class AntColonyList implements AntColony {
 		for (int i = 0; i < nodeCount; i++) {
 			int currentNode = ant.getCurrentNodeIndex();
 			double tmp = 0.0;
-			if (i != currentNode && !visited[i]) {
+			if (!visited[i]) {
 				tmp = Math.pow(pheromones.get(currentNode).get(i), alpha)
 						* Math.pow((1.0 / distances.get(currentNode).get(i)),
 								beta);
