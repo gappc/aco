@@ -19,7 +19,7 @@ public class AntColonyMain {
 	private final static double Q = 0.1;//2.0;
 	
 	public static void main(String[] args) {
-		String filename = "data/att48.tsptest";
+		String filename = "data/att48.tsp";
 		try {
 			List<String> rawData = readfile(filename, 6);
 			List<Node> nodes = convertToNodes(rawData);
