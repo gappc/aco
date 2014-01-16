@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import aco.list.AntColonyList;
+import aco.array.AntColonyArray;
 import aco.list.Node;
 
 
@@ -19,12 +19,12 @@ public class AntColonyMain {
 	private final static double Q = 0.1;//2.0;
 	
 	public static void main(String[] args) {
-		String filename = "/sdb/studium/ws2013-2014/bio-opt/workspace/aco/data/att48.tsp";
+		String filename = "data/att48.tsptest";
 		try {
 			List<String> rawData = readfile(filename, 6);
 			List<Node> nodes = convertToNodes(rawData);
-//			AntColony ac = new AntColonyArray();
-			AntColony ac = new AntColonyList();
+			AntColony ac = new AntColonyArray();
+//			AntColony ac = new AntColonyList();
 			long start = System.currentTimeMillis();
 			ac.solve(nodes, MAX_ITERATIONS, ANTS, ALPHA, BETA, RHO, Q);
 			System.out.println("time: " + (System.currentTimeMillis() - start));
